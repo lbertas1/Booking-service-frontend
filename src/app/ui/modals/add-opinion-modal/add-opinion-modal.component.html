@@ -1,0 +1,63 @@
+<ngx-smart-modal #addOpinionModal identifier="addOpinionModal" customClass="add-opinion-modal">
+  <div class="main-container">
+    <div class="header">
+      <h2>
+        {{ 'Add opinion' | translatePipe }}
+      </h2>
+    </div>
+    <table *ngIf="unfilledReservations.length > 0">
+      <thead>
+      <tr>
+        <th>{{ 'Select' | translatePipe }}</th>
+        <th>{{ 'Room number' | translatePipe }}</th>
+        <th>{{ 'From' | translatePipe }}</th>
+        <th>{{ 'To' | translatePipe }}</th>
+        <th>{{ 'Price for night' | translatePipe }}</th>
+        <th>{{ 'Amount for reservation' | translatePipe }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let reservation of unfilledReservations; index as i">
+        <td><input type="checkbox" value="{{ reservation.reservationId }}" (change)="updateChosenReservations($event)"></td>
+        <td>{{ reservation.roomNumber }}</td>
+        <td>{{ reservation.startOfBooking | date:'dd.MM.yyy' }}</td>
+        <td>{{ reservation.endOfBooking | date:'dd.MM.yyy' }}</td>
+        <td>{{ reservation.priceForNight }}</td>
+        <td>{{ reservation.totalAmountForReservation }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="opinion-input">
+        <div class="opinion-input-name">
+          <label for="">{{ 'Evaluation: ' | translatePipe }} </label>
+        </div>
+        <div class="opinion-input-evaluation">
+          <input
+            type="number"
+            placeholder="5"
+            formControlName="evaluation"
+            min="1"
+            max="10">
+        </div>
+      </div>
+      <div class="error" *ngIf="isSubmitted && formControls.evaluation.errors">
+        <span *ngIf="formControls.evaluation.errors.required">EVALUATION IS REQUIRED</span>
+      </div>
+      <div class="opinion-input">
+        <div class="opinion-input-name">
+          <label for="">{{ 'Message: ' | translatePipe }} </label>
+        </div>
+        <div class="opinion-input-message">
+          <textarea placeholder="{{ 'Message: ' }}" formControlName="opinion"></textarea>
+        </div>
+      </div>
+      <div class="error" *ngIf="isSubmitted && formControls.opinion.errors">
+        <span *ngIf="formControls.opinion.errors.required">OPINION IS REQUIRED</span>
+      </div>
+      <div class="user-property-button">
+        <button type="submit" [disabled]="isSubmitted" (click)="saveOpinions()">{{ 'Add opinion: ' | translatePipe }}</button>
+      </div>
+    </form>
+  </div>
+</ngx-smart-modal>

@@ -18,9 +18,10 @@ import {UpdateUserModalComponent} from './modals/update-user-modal/update-user-m
 import {ChangePasswordModalComponent} from './modals/change-password-modal/change-password-modal.component';
 import {AddOpinionModalComponent} from './modals/add-opinion-modal/add-opinion-modal.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import { HotelReportModalComponent } from './modals/hotel-report-modal/hotel-report-modal.component';
 
 @NgModule({
-  declarations: [NavbarComponent, LoginModalComponent, RegistrationModalComponent, FooterComponent, ChatComponent, ChatWindowComponent, ChatModalComponent, UpdateUserModalComponent, ChangePasswordModalComponent, AddOpinionModalComponent, ConfirmationModalComponent],
+  declarations: [NavbarComponent, LoginModalComponent, RegistrationModalComponent, FooterComponent, ChatComponent, ChatWindowComponent, ChatModalComponent, UpdateUserModalComponent, ChangePasswordModalComponent, AddOpinionModalComponent, ConfirmationModalComponent, HotelReportModalComponent],
     exports: [
         NavbarComponent,
         FooterComponent,

@@ -153,5 +153,18 @@ export const en = {
   'No admin available': 'No admin available',
   'We are sorry, unfortunately it is impossible to contact with the staff now. Please try again later.': 'We are sorry, unfortunately it is impossible to contact with the staff now. Please try again later.',
 
+  // REPORT MODAL
+  'Hotel report': 'Hotel report',
+  'Reservations starting today:':'Reservations starting today:',
+  'Reservations endings today:':'Reservations endings today:',
+  'Reservations starting in 3 days:':'Reservations starting in 3 days:',
+  'Reservations starting in 7 days:':'Reservations starting in 7 days:',
+  'Reservation number':'Reservation number',
+  'Total cost':'Total cost',
+  'Client name': 'Client name',
+  'Client surname': 'Client surname',
+  'Client email': 'Client email',
+  'Client phone': 'Client phone',
+
 
 };

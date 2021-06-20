@@ -45,7 +45,10 @@
         </div>
         <div class="nav-route">
           <ol>
-            <li (click)="openModal('loginModal')" *appShowForAuth="false"><a>{{ 'Login' | translatePipe }}</a>
+            <li (click)="openModal('loginModal')" *appShowForAuth="false">
+              <a>
+                {{ 'Login' | translatePipe }}
+              </a>
             <li *appShowForAuth="true"><a>{{ getUsername() }}</a>
               <ul>
                 <li (click)="redirectToProfile()" *appShowForAuth="true">

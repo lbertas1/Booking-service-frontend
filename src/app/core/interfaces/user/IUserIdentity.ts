@@ -1,5 +1,5 @@
 import { IBaseUser } from "./IBaseUser";
 
-export interface IIdentity extends IBaseUser {
+export interface IUserIdentity extends IBaseUser {
   token: string;
 }

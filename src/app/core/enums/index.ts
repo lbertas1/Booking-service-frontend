@@ -4,4 +4,5 @@ export * from './paymentStatus';
 export * from './break';
 export * from './messageIndex';
 export * from './equipments';
-export * from './myConstant';
+export * from './messageConstants';
+export * from './chatConstants';

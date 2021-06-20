@@ -1,0 +1,527 @@
+<ngx-smart-modal #reportModal identifier="reportModal" customClass="report-modal">
+  <div class="main">
+    <div class="main-nav">
+      <h1>
+        {{ 'Hotel report' | translatePipe }}
+      </h1>
+    </div>
+    <div class="main-body">
+      <div class="commencing-reservations">
+        <div class="commencing-reservations-header">
+          <h2>
+            {{ 'Reservations starting today:' | translatePipe }}
+          </h2>
+        </div>
+        <div class="commencing-reservations-content">
+          <table *ngIf="adminIdentity !== null">
+            <thead>
+            <tr>
+              <th>
+                <div class="th-content">
+                  Lp
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Reservation number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'From' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'To' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Room number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Total cost' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Status' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client name' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client surname' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client phone' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client email' | translatePipe }}
+                </div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of adminIdentity.commencingReservations; index as i">
+              <td>
+                <div class="td-content">
+                  {{ i + 1 }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.reservationNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.startOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.endOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.roomNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.totalAmountForReservation }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.paymentStatus.toString() | translatePipe }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.name }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.surname }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.phone }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.email }}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="endings-reservations">
+        <div class="endings-reservations-header">
+          <h2>
+            {{ 'Reservations endings today:' | translatePipe }}
+          </h2>
+        </div>
+        <div class="endings-reservations-content">
+          <table *ngIf="adminIdentity !== null">
+            <thead>
+            <tr>
+              <th>
+                <div class="th-content">
+                  Lp
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Reservation number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'From' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'To' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Room number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Total cost' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Status' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client name' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client surname' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client phone' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client email' | translatePipe }}
+                </div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of adminIdentity.endingsReservations; index as i">
+              <td>
+                <div class="td-content">
+                  {{ i + 1 }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.reservationNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.startOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.endOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.roomNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.totalAmountForReservation }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.paymentStatus.toString() | translatePipe }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.name }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.surname }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.phone }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.email }}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="starting-reservations-3-days">
+        <div class="starting-reservations-3-days-header">
+          <h2>
+            {{ 'Reservations starting in 3 days:' | translatePipe }}
+          </h2>
+        </div>
+        <div class="starting-reservations-3-days-content">
+          <table *ngIf="adminIdentity !== null">
+            <thead>
+            <tr>
+              <th>
+                <div class="th-content">
+                  Lp
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Reservation number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'From' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'To' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Room number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Total cost' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Status' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client name' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client surname' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client phone' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client email' | translatePipe }}
+                </div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of adminIdentity.reservationsStartingIn3Days; index as i">
+              <td>
+                <div class="td-content">
+                  {{ i + 1 }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.reservationNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.startOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.endOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.roomNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.totalAmountForReservation }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.paymentStatus.toString() | translatePipe }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.name }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.surname }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.phone }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.email }}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="starting-reservations-7-days">
+        <div class="starting-reservations-7-days-header">
+          <h2>
+            {{ 'Reservations starting in 7 days:' | translatePipe }}
+          </h2>
+        </div>
+        <div class="starting-reservations-7-days-content">
+          <table *ngIf="adminIdentity !== null">
+            <thead>
+            <tr>
+              <th>
+                <div class="th-content">
+                  Lp
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Reservation number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'From' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'To' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Room number' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Total cost' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Status' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client name' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client surname' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client phone' | translatePipe }}
+                </div>
+              </th>
+              <th>
+                <div class="th-content">
+                  {{ 'Client email' | translatePipe }}
+                </div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of adminIdentity.reservationsStartingIn7Days; index as i">
+              <td>
+                <div class="td-content">
+                  {{ i + 1 }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.reservationNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.startOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.endOfBooking | date:'dd.MM.yyy' }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.roomNumber }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.totalAmountForReservation }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.paymentStatus.toString() | translatePipe }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.name }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.surname }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.phone }}
+                </div>
+              </td>
+              <td>
+                <div class="td-content">
+                  {{ reservation.email }}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-smart-modal>

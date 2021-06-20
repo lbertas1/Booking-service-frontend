@@ -152,6 +152,19 @@ export const pl = {
 
   // CHAT
   'No admin available': 'Żaden admin nie jest dostępny',
-  'We are sorry, unfortunately it is impossible to contact with the staff now. Please try again later.': 'Przepraszamy, niestety kontakt z obsługą jest w tej chwili niemożliwy. Prosimy spróbować później'
+  'We are sorry, unfortunately it is impossible to contact with the staff now. Please try again later.': 'Przepraszamy, niestety kontakt z obsługą jest w tej chwili niemożliwy. Prosimy spróbować później',
+
+  // REPORT MODAL
+  'Hotel report': 'Raport z hotelu',
+  'Reservations starting today:':'Rozpoczynające się dzis rezerwacje:',
+  'Reservations endings today:':'Kończące się dziś rezerwacje:',
+  'Reservations starting in 3 days:':'Rezerwacje rozpoczynające się za 3 dni:',
+  'Reservations starting in 7 days:':'Rezerwacje rozpoczynające się za tydzień:',
+  'Reservation number':'Numer rezerwacji',
+  'Total cost':'Całkowity koszt',
+  'Client name':'Imię klienta',
+  'Client surname': 'Nazwisko klienta',
+  'Client email': 'Email klienta',
+  'Client phone': 'Telefon klienta',
 
 };

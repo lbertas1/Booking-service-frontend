@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IIdentity } from "../interfaces";
+import { IUserIdentity } from "../interfaces";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
@@ -9,11 +9,11 @@ export class JwtService {
 
   public readonly isAuthenticated$ = new BehaviorSubject<boolean>(!!this.getIdentity());
 
-  public getIdentity(): IIdentity {
+  public getIdentity(): IUserIdentity {
     return localStorage.getItem('identity') ? JSON.parse(localStorage.getItem('identity')) : false;
   }
 
-  public saveIdentity(identity: IIdentity): IIdentity {
+  public saveIdentity(identity: IUserIdentity): IUserIdentity {
     localStorage.setItem('identity', JSON.stringify(identity));
     this.isAuthenticated$.next(true);
     return identity;

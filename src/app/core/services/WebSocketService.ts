@@ -4,8 +4,8 @@ import {BehaviorSubject, Subscription} from "rxjs";
 import {JwtService} from "./JwtService";
 import {SessionStorageService} from "./SessionStorageService";
 import {Message} from "@stomp/stompjs";
-import {MessageIndex, MyConstant, Role} from "../enums";
-import {ICityUsernameData, IIdentity, ISocketMessage} from "../interfaces";
+import {MessageIndex, MessageConstants, Role} from "../enums";
+import {ICityUsernameData, IUserIdentity, ISocketMessage} from "../interfaces";
 import {UserService} from "./UserService";
 import {ChatService} from "./ChatService";
 
@@ -14,7 +14,7 @@ import {ChatService} from "./ChatService";
 })
 export class WebSocketService {
 
-  private _identity: IIdentity;
+  private _identity: IUserIdentity;
 
   private _userSubscriptions: Subscription[] = [];
 
@@ -107,7 +107,7 @@ export class WebSocketService {
           this._identity.role === Role.ROLE_ADMIN &&
           this.conversation$.value != null &&
           this.isChatOpened$.value === false &&
-          message.body !== MyConstant.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
+          message.body !== MessageConstants.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
           this.isChatOpened$.next(true);
         }
       })
@@ -128,7 +128,7 @@ export class WebSocketService {
     } else {
       this.conversation$.next({
         index: MessageIndex.ERROR,
-        message: MyConstant.SORRY_CHAT_CLOSED});
+        message: MessageConstants.SORRY_CHAT_CLOSED});
 
       return null;
     }

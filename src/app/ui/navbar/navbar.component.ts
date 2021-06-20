@@ -1,15 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from "rxjs";
-import {
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router
-} from "@angular/router";
-import { IUser } from "../../core/interfaces";
-import {AuthService, JwtService, NotifyService, UserService, WebSocketService} from "../../core/services";
-import { ModalService } from "../../core/services";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {IUser} from '../../core/interfaces';
+import {AuthService, JwtService, ModalService, NotifyService, UserService, WebSocketService} from '../../core/services';
+import {Role} from '../../core/enums';
 
 @Component({
   selector: 'app-navbar',
@@ -86,7 +80,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public logout(): void {
-    this._subscriptions.push(this._userService.logout(this._jwtService.getIdentity()).subscribe());
+    if (this._jwtService.getIdentity().role === Role.ROLE_ADMIN) {
+      this._subscriptions.push(this._userService.logout(this._jwtService.getIdentity()).subscribe());
+    }
     this._jwtService.removeIdentity();
     this._notifyService.pushSuccess('Logout', 'Logout was successful. Have a nice day and come back soon');
     this._webSocketService.closeAdminSubscriptions();

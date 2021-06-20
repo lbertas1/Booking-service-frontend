@@ -5,12 +5,13 @@ import {
   IChangePassword,
   ICityUsernameData,
   ICredentials,
-  IIdentity,
+  IUserIdentity,
   IRegisterUser,
   IUpdateUser,
-  IUserProfile, IUserRequest
-} from "../interfaces";
+  IUserProfile, IUserRequest, IAdminIdentity
+} from '../interfaces';
 import { IAccess } from "../interfaces";
+import {Role} from '../enums';
 
 @Injectable({
   providedIn: "root"
@@ -24,12 +25,12 @@ export class UserService {
   ) {
   }
 
-  public login(credentials: ICredentials): Observable<IIdentity> {
+  public login(credentials: ICredentials): Observable<IUserIdentity> {
     return this._apiService.post(`${this.path}/login`, credentials);
   }
 
-  public logout(identity: IIdentity): Observable<IIdentity> {
-    return this._apiService.post(`${this.path}/log-out/`, identity);
+  public logout(identity: IUserIdentity): Observable<IAdminIdentity> {
+    return this._apiService.post(`${this.path}/log-out`, identity);
   }
 
   public register(iRegisterUser: IRegisterUser): Observable<IUserRequest> {

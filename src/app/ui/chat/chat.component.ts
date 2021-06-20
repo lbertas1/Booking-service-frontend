@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {JwtService, ModalService, NotifyService, UserService, WebSocketService} from "../../core/services";
 import {Subscription} from "rxjs";
 import {RxStompService} from "@stomp/ng2-stompjs";
-import {ICityUsernameData, IIdentity} from "../../core/interfaces";
+import {ICityUsernameData, IUserIdentity} from "../../core/interfaces";
 import {Role} from "../../core/enums";
 import {SessionStorageService} from "../../core/services/SessionStorageService";
 import {Translate} from '../../core/pipes';
@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  private _identity: IIdentity;
+  private _identity: IUserIdentity;
 
   isChatOpened = false;
 

@@ -6,11 +6,12 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {IIdentity, ISocketMessage} from "../../../core/interfaces";
+import {IUserIdentity, ISocketMessage} from "../../../core/interfaces";
 import {Subscription} from "rxjs";
-import {MessageIndex, MyConstant, Role} from "../../../core/enums";
+import {MessageIndex, MessageConstants, Role, ChatConstants} from '../../../core/enums';
 import {JwtService, NotifyService, UserService, WebSocketService} from "../../../core/services";
 import {SessionStorageService} from "../../../core/services/SessionStorageService";
+import {BOOL_TYPE} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-chat-window',
@@ -35,7 +36,7 @@ export class ChatWindowComponent implements OnInit {
 
   private _isShiftClick = false;
 
-  private _identity: IIdentity;
+  private _identity: IUserIdentity;
 
   public conversation: ISocketMessage[] = [];
 
@@ -69,32 +70,32 @@ export class ChatWindowComponent implements OnInit {
   ngOnInit(): void {
     this.getUsername();
     this._subscriptions.push(this._webSocketService.conversation$.subscribe(value => {
-      if (value != null && value.message === MyConstant.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
+      if (value != null && value.message === MessageConstants.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
         this._notifyService.pushInfo('Chat closed',
           'The chat was closed by your interlocutor. We invite you to contact another person or at a different date. Remember that you can also send an email from the contact tab.');
         this._webSocketService.changeIsChatActiveValue(false);
       }
 
-      if (value != null && value.message != MyConstant.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
+      if (value != null && value.message !== MessageConstants.SERVICE_MESSAGE_CHAT_HAS_BEEN_CLOSED) {
         this.conversation.push(value);
       }
     }));
   }
 
   getUsername() {
-    this._identity = this._jwtService.getIdentity()
+    this._identity = this._jwtService.getIdentity();
 
     if (this._identity.role === Role.ROLE_ADMIN) {
       this.identifier = this._identity.username;
       this.username = this.identifier;
     } else if (this._identity.role === Role.ROLE_USER) {
-      this.identifier = this._identity.username;
+      this.identifier = ChatConstants.USER + this._identity.username;
       this.conversation.push({index: MessageIndex.INCOMING, message: 'Hello, how can we help you?'});
       this.username = this.identifier;
     } else {
-      this.identifier = this._sessionStorageService.getSession();
+      this.identifier = ChatConstants.USER + this._sessionStorageService.getSession();
       this.conversation.push({index: MessageIndex.INCOMING, message: 'Hello, how can we help you?'});
-      this.username = this._sessionStorageService.getItem(MyConstant.UNRECOGNIZED_USERNAME);
+      this.username = this._sessionStorageService.getItem(MessageConstants.UNRECOGNIZED_USERNAME);
     }
   }
 

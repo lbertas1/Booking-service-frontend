@@ -13,7 +13,7 @@ import {JwtService, NotifyService, UserService, WebSocketService} from "../../..
 import {Subscription, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {ICityUsernameData} from "../../../core/interfaces";
-import {MyConstant, Role} from "../../../core/enums";
+import {MessageConstants, Role} from "../../../core/enums";
 import {SessionStorageService} from "../../../core/services/SessionStorageService";
 
 @Component({
@@ -72,7 +72,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     let city = this.cityElement.nativeElement.value;
 
     if (this.user === null) {
-      this._sessionStorageService.setItem(MyConstant.UNRECOGNIZED_USERNAME, this.usernameValue);
+      this._sessionStorageService.setItem(MessageConstants.UNRECOGNIZED_USERNAME, this.usernameValue);
     }
 
     if (this.usernameValue.length > 5) {

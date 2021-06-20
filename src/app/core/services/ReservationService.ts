@@ -17,8 +17,7 @@ export class ReservationService {
   private path: string = '/reservations';
 
   constructor(
-    private readonly _apiService: ApiService,
-    private readonly jwtService: JwtService
+    private readonly _apiService: ApiService
   ) {
   }
 

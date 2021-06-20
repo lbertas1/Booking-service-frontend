@@ -8,9 +8,9 @@ import {
   UrlTree
 } from '@angular/router';
 import {Observable} from 'rxjs';
-import {JwtService} from "../services";
-import {take, tap} from "rxjs/operators";
-import {Role} from "../enums";
+import {JwtService} from '../services';
+import {take, tap} from 'rxjs/operators';
+import {Role} from '../enums';
 
 @Injectable({
   providedIn: 'root'
@@ -32,13 +32,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private canActivateAnything(): Observable<boolean> {
-    return this._jwtService.isAuthenticated$.pipe(
-      take(1),
-      tap(isAuth => {
-        if (!isAuth) {
-          this._router.navigateByUrl('/main');
-        }
-      })
-    );
+    return this._jwtService
+      .isAuthenticated$
+      .pipe(
+        take(1),
+        tap(isAuth => {
+          if (!isAuth) {
+            this._router.navigateByUrl('/main');
+          }
+        })
+      );
   }
 }
